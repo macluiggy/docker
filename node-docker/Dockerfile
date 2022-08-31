@@ -1,16 +1,20 @@
 # syntax=docker/dockerfile:1
+FROM node:18-alpine3.15 as base
 
-FROM node:18-alpine3.15
+WORKDIR /code
 
-ENV NODE_ENV=production
+COPY package.json package.json
+COPY package-lock.json package-lock.json}
 
-WORKDIR /app
-
-COPY ["package.json", "package-lock.[json|yaml]", "./"]
-
-RUN npm install --production
-RUN npm install -g nodemon
-
+# para correrlo ejecuta el mismo comando para el build
+# pero añadele el parametro --target test
+FROM base as test
+RUN npm install
+RUN npm ci
 COPY . .
+RUN npm run test
 
-CMD ["node", "server.js"]
+FROM base as prod
+RUN npm ci --production
+COPY . .
+CMD [ "node", "server.js" ]

@@ -10,20 +10,14 @@ services:
     environment:
       - SERVER_PORT=8000
       - CONNECTIONSTRING=mongodb://mongo:27017/notes
-      - ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      - ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
     volumes:
       - ./:/app
-    command: npm run debug
+    command: npm run dev
 
   mongo:
-    image: mongo:5
+    image: mongo
     ports:
       - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
