@@ -1,0 +1,6 @@
+[submodule "nestjs-rabbitmq-microservices2"]
+	path = nestjs-rabbitmq-microservices2
+	url = https://github.com/mguay22/nestjs-rabbitmq-microservices
+[submodule "nestjs-rabbitmq-microservice"]
+	path = nestjs-rabbitmq-microservice
+	url = https://github.com/mguay22/nestjs-rabbitmq-microservices
